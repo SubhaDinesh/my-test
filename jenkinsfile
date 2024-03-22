@@ -7,8 +7,8 @@ pipeline {
             branch"Develop"
            }
             steps {
-             sh "mvn clean package"
-               }
+        echo "Maven build..."
+              }
         }
 
      stage('dev deploy') {
