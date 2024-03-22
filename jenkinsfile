@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('maven build') {
           when{
-            branch:"maven"
+            branch:"Develop"
            }
             steps {
              sh "mvn clean package"
                }
         }
 
-        stage('dev deploy') {
+     stage('dev deploy') {
             when{
             branch:"Develop"
            }
