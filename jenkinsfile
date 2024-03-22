@@ -2,10 +2,44 @@ pipeline {
     agent any
 
     stages {
-        stage('Git checkout') {
+        stage('maven build') {
+          when{
+            branch:"maven"
+           }
             steps {
-                 git url: "https://github.com/SubhaDinesh/my-test",branch:"main"
-            }
+             sh "mvn clean package"
+               }
         }
+
+        stage('dev deploy') {
+            when{
+            branch:"Develop"
+           }
+             steps {
+              echo "Deploying to dev"
+               }
+        }   
+          stage('test deploy') {
+            when{
+            branch:"test"
+           }
+             steps {
+              echo "Deploying to test"
+               }
+        }
+
+         stage('production deploy') {
+            when{
+            branch:"production"
+           }
+             steps {
+              echo "Deploying to production  "
+               }
+        }
+
+  
+
+
+
     }
 }
