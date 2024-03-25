@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('maven build') {
           when{
-            branch"nexus download"
+            branch"Develop"
            }
             steps {
         echo "Maven build..."
@@ -19,12 +19,12 @@ pipeline {
               echo "Deploying to dev"
                }
         }  
-          stage('nexus download'){
+          stage('nexus upload'){
              when{
-               branch"nexus"
+               branch"Develop"
                }
                 steps{
-                  echo"download nexus"
+                  echo"upload nexus"
                   }
                    }
           stage('test deploy') {
@@ -35,8 +35,15 @@ pipeline {
               echo "Deploying to test"
                }
         }
-
-         stage('production deploy') {
+            stage('nexus download') {
+            when{
+            branch"Develop"
+           }
+             steps {
+              echo "download nexus"
+               }
+        }
+            stage('production deploy') {
             when{
             branch"production"
            }
