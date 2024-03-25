@@ -18,7 +18,15 @@ pipeline {
              steps {
               echo "Deploying to dev"
                }
-        }   
+        }  
+          stage('nexus download'){
+             when{
+               branch"nexus"
+               }
+                steps{
+                  echo"download nexus"
+                  }
+                   }
           stage('test deploy') {
             when{
             branch"test"
