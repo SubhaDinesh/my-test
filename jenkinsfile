@@ -2,10 +2,52 @@ pipeline {
     agent any
 
     stages {
-        stage('Git checkout') {
+        stage('maven build') {
+          when{
+            branch"Develop"
+           }
             steps {
-                 git url: "https://github.com/SubhaDinesh/my-test",branch:"main"
-            }
+        echo "Maven build..."
+              }
         }
+
+     stage('dev deploy') {
+            when{
+            branch"Develop"
+           }
+             steps {
+              echo "Deploying to dev"
+               }
+        }  
+          stage('nexus download'){
+             when{
+               branch"nexus"
+               }
+                steps{
+                  echo"download nexus"
+                  }
+                   }
+          stage('test deploy') {
+            when{
+            branch"test"
+           }
+             steps {
+              echo "Deploying to test"
+               }
+        }
+
+         stage('production deploy') {
+            when{
+            branch"production"
+           }
+             steps {
+              echo "Deploying to production  "
+               }
+        }
+
+  
+
+
+
     }
 }
