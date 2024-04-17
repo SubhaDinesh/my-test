@@ -12,7 +12,7 @@
 # Command to run the application
 #CMD ["npm", "start"]
 #=============================#
-FROM ubuntu:latest -alpine
+FROM ubuntu:latest-alpine
 WORKDIR /app
 COPY ./app
 RUN apt-get update && apt-get install -y git
