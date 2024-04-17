@@ -14,7 +14,7 @@
 #=============================#
 FROM ubuntu:20.04
 WORKDIR /app
-COPY ..
+#COPY ..
 RUN apt-get update && apt-get install -y git
 RUN git clone https://github.com/SubhaDinesh/my-test.git
 WORKDIR /app/my-test
