@@ -12,7 +12,7 @@
 # Command to run the application
 #CMD ["npm", "start"]
 #=============================#
-FROM ubuntu:latest
+FROM ubuntu:20.04
 WORKDIR /app
 COPY ./app
 RUN apt-get update && apt-get install -y git
