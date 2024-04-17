@@ -1,13 +1,21 @@
-FROM node:alpine
+#FROM node:alpine
 # Set the working directory in the container
-WORKDIR /app
+#WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+#COPY package*.json ./
 # Install dependencies
-RUN npm install
+#RUN npm install
 # Copy the remaining application code to the working directory
-COPY . .
+#COPY . .
 # Expose port 3000
-EXPOSE 3000
+#EXPOSE 3000
 # Command to run the application
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
+#=============================#
+FROM ubuntu:latest -alpine
+WORKDIR /app
+COPY ./app
+RUN apt-get update && apt-get install -y git
+RUN git clone https://github.com/SubhaDinesh/my-test.git
+WORKDIR /app/my-test
+CMD ["bash"]
